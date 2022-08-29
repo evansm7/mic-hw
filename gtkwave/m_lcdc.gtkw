@@ -1,0 +1,108 @@
+[*]
+[*] GTKWave Analyzer v3.3.87 (w)1999-2017 BSI
+[*] Mon Jul  1 18:54:17 2019
+[*]
+[dumpfile] "/Users/matt/Documents/Hardware/verilog/mic-hw/tb_component_m_lcdc_apb.vcd"
+[dumpfile_mtime] "Mon Jul  1 18:51:36 2019"
+[dumpfile_size] 201427885
+[savefile] "/Users/matt/Documents/Hardware/verilog/mic-hw/gtkwave/m_lcdc.gtkw"
+[timestart] 2559430000
+[size] 1680 1005
+[pos] -1 -1
+*-22.120077 2551430000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.REQA.
+[sst_width] 203
+[signals_width] 328
+[sst_expanded] 1
+[sst_vpaned_height] 639
+@28
+top.clk
+top.reset
+@200
+-APB
+@28
+top.REQA.PCLK
+top.REQA.nRESET
+top.REQA.PENABLE
+@22
+top.REQA.PRDATA[31:0]
+@28
+top.REQA.PSEL
+@22
+top.REQA.PWDATA[31:0]
+@28
+top.REQA.PWRITE
+@200
+-MIC
+@22
+[color] 2
+top.s0_td[63:0]
+@28
+[color] 2
+top.s0_tv
+[color] 2
+top.s0_tr
+[color] 2
+top.s0_tl
+@22
+[color] 3
+top.s0r_td[63:0]
+@28
+[color] 3
+top.s0r_tv
+[color] 3
+top.s0r_tr
+[color] 3
+top.s0r_tl
+@200
+-MIF
+@24
+top.REQA.mif.state[2:0]
+@28
+top.REQA.mif.req_ready
+top.REQA.mif.req_start
+@22
+top.REQA.mif.write_counter[8:0]
+top.REQA.mif.write_limit[8:0]
+top.REQA.mif.read_len[7:0]
+top.REQA.mif.count[9:0]
+@28
+top.REQA.mif.response_handshake_a
+top.REQA.mif.response_handshake_b
+@200
+-LCDC
+@28
+top.REQA.pixel_clk
+@22
+top.REQA.rgb[23:0]
+@28
+top.REQA.hs
+@29
+top.REQA.vs
+@28
+top.REQA.int_den
+@24
+top.REQA.horiz[10:0]
+top.REQA.vert[10:0]
+@28
+top.REQA.buffer_current
+top.REQA.buffer_display[1:0]
+top.REQA.buffer_display_rr[1:0]
+top.REQA.buffer_fetcher[1:0]
+@22
+top.REQA.dma_address[31:3]
+@28
+top.REQA.fetcher_state[1:0]
+@24
+top.REQA.fetch_remaining[10:0]
+top.REQA.req_len[7:0]
+@22
+top.REQA.fetch_addr[7:0]
+@28
+top.REQA.fetch_buffer
+top.REQA.fetch_data_en
+top.REQA.frame_init_d
+top.REQA.frame_init_rr
+[pattern_trace] 1
+[pattern_trace] 0

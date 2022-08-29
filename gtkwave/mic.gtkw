@@ -1,0 +1,203 @@
+[*]
+[*] GTKWave Analyzer v3.3.48 (w)1999-2013 BSI
+[*] Sun Nov 26 05:17:47 2017
+[*]
+[dumpfile] "/Users/matt/Documents/Hardware/verilog/mictest/tb_top_mic.vcd"
+[dumpfile_mtime] "Sun Nov 26 05:13:40 2017"
+[dumpfile_size] 7913870
+[savefile] "/Users/matt/Documents/Hardware/verilog/mictest/mic.gtkw"
+[timestart] 19649
+[size] 1680 1006
+[pos] -1 -1
+*-7.000000 20025 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.MIC.
+[sst_width] 188
+[signals_width] 331
+[sst_expanded] 1
+[sst_vpaned_height] 655
+@28
+top.reset
+top.clk
+[color] 2
+top.m0_tv
+[color] 2
+top.m0_tr
+@22
+[color] 2
+top.m0_td[63:0]
+@28
+[color] 2
+top.m0_tl
+@22
+[color] 2
+top.MIC.STEER_M0REQ.storage[63:0]
+@28
+[color] 2
+top.m0r_tv
+[color] 2
+top.m0r_tr
+@22
+[color] 2
+top.m0r_td[63:0]
+@28
+[color] 2
+top.m0r_tl
+[color] 3
+top.m1_tv
+[color] 3
+top.m1_tr
+@22
+[color] 3
+top.m1_td[63:0]
+@28
+[color] 3
+top.m1_tl
+[color] 3
+top.m1r_tv
+[color] 3
+top.m1r_tr
+@22
+[color] 3
+top.m1r_td[63:0]
+@28
+[color] 3
+top.m1r_tl
+top.m2_tv
+top.m2_tr
+@22
+top.m2_td[63:0]
+@28
+top.m2_tl
+top.m2r_tv
+top.m2r_tr
+@22
+top.m2r_td[63:0]
+@28
+top.m2r_tl
+@200
+-
+@23
+top.s0_td[63:0]
+@28
+top.s0_tl
+top.s0_tr
+top.s0_tv
+@22
+top.s0r_td[63:0]
+@28
+top.s0r_tl
+top.s0r_tr
+top.s0r_tv
+@22
+top.MIC.S0MERGEREQ.id0_val[3:0]
+top.MIC.S0MERGEREQ.id1_val[3:0]
+top.MIC.S0MERGEREQ.id2_val[3:0]
+top.MIC.S0MERGEREQ.id3_val[3:0]
+@28
+top.MIC.S0MERGEREQ.routing_direction[1:0]
+@22
+top.MIC.S0MERGEREQ.storage[63:0]
+@28
+top.MIC.S0MERGEREQ.is_header
+@22
+top.MIC.s0m0_td[63:0]
+@28
+top.MIC.s0m0_tl
+top.MIC.s0m0_tr
+top.MIC.s0m0_tv
+@22
+top.MIC.s0m1_td[63:0]
+@28
+top.MIC.s0m1_tl
+top.MIC.s0m1_tr
+top.MIC.s0m1_tv
+@22
+top.MIC.s0m2_td[63:0]
+@28
+top.MIC.s0m2_tl
+top.MIC.s0m2_tr
+top.MIC.s0m2_tv
+@22
+top.MIC.s0m3_td[63:0]
+@28
+top.MIC.s0m3_tl
+top.MIC.s0m3_tr
+top.MIC.s0m3_tv
+top.MIC.S0I_TVALID
+@22
+top.MIC.STEER_S0RESP.I_TDATA[63:0]
+@28
+top.MIC.STEER_S0RESP.I_TLAST
+top.MIC.STEER_S0RESP.I_TREADY
+top.MIC.STEER_S0RESP.I_TVALID
+top.MIC.STEER_S0RESP.NEXT_TREADY
+top.MIC.STEER_S0RESP.NEXT_TVALID
+@22
+top.MIC.STEER_S0RESP.O0_TDATA[63:0]
+@28
+top.MIC.STEER_S0RESP.O0_TLAST
+top.MIC.STEER_S0RESP.O0_TREADY
+top.MIC.STEER_S0RESP.O0_TVALID
+@22
+top.MIC.STEER_S0RESP.O1_TDATA[63:0]
+@28
+top.MIC.STEER_S0RESP.O1_TLAST
+top.MIC.STEER_S0RESP.O1_TREADY
+top.MIC.STEER_S0RESP.O1_TVALID
+@22
+top.MIC.STEER_S0RESP.O2_TDATA[63:0]
+@28
+top.MIC.STEER_S0RESP.O2_TLAST
+top.MIC.STEER_S0RESP.O2_TREADY
+top.MIC.STEER_S0RESP.O2_TVALID
+@22
+top.MIC.STEER_S0RESP.O3_TDATA[63:0]
+@28
+top.MIC.STEER_S0RESP.O3_TLAST
+top.MIC.STEER_S0RESP.O3_TREADY
+top.MIC.STEER_S0RESP.O3_TVALID
+top.MIC.STEER_S0RESP.clk
+top.MIC.STEER_S0RESP.full
+top.MIC.STEER_S0RESP.is_header
+top.MIC.STEER_S0RESP.reset
+@22
+top.MIC.STEER_S0RESP.routing_direction[3:0]
+top.MIC.STEER_S0RESP.storage[63:0]
+@28
+top.MIC.STEER_S0RESP.storage_last
+top.MIC.s0m0_tv
+top.MIC.STEER_S0RESP.O0_TVALID
+top.MIC.STEER_S0RESP.is_header
+@200
+-RAM
+@28
+top.s1_tv
+top.s1_tr
+@22
+top.s1_td[63:0]
+@28
+top.s1_tl
+top.s1r_tv
+top.s1r_tr
+@22
+top.s1r_td[63:0]
+@28
+top.s1r_tl
+@200
+-RAM0
+@28
+top.s0_tv
+top.s0_tr
+@22
+top.s0_td[63:0]
+@28
+top.s0_tl
+top.s0r_tv
+top.s0r_tr
+@22
+top.s0r_td[63:0]
+@28
+top.s0r_tl
+[pattern_trace] 1
+[pattern_trace] 0

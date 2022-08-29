@@ -1,0 +1,31 @@
+// Wavedrom file for MIC to APB bridge
+// This one showing MIC stalls
+
+{signal: [
+    {name: 'clk', 			wave: 'p........................................'},
+
+    {name: 'MIC ITREADY (o)',   	wave: '1...0...1|.0.....1|...0.....1|.0........1'},
+    {name: 'MIC ITVALID (i)', 		wave: '01010....|10......|1010......|10.........'},
+    {name: 'MIC ITDATA (i)', 		wave: 'x2.2x....|2x......|2.2x......|2x.........', data: ['W(a)', 'a', 'R(b)', 'W(c)', 'c', 'R(d)']},
+    {name: 'MIC ITLAST (i)',  		wave: '0..10....|10......|..10......|10.........'},
+
+    {name: 'MIC OTREADY (i)',   	wave: 'x.....01x|...0101x|.......01x|......0101x'},
+    {name: 'MIC OTVALID (o)', 		wave: '0.....1.0|...1...0|.......1.0|......1...0'},
+    {name: 'MIC OTDATA (o)', 		wave: 'x.....2.x|...2.2.x|.......2.x|......2.2.x', data: ['Wack', 'Rack', 'b', 'Wack', 'Rack', 'd']},
+    {name: 'MIC OTLAST (o)',  		wave: '0.....1.0|.....1.0|.......1.0|........1.0'},
+
+    {name: 'State', 			wave: '2.3.333.2|.444.4.2|.3.33..3.2|.44...4.4.2',
+     data: ['IDLE', 'WAITD', 'WSEL', 'WEN', 'WACK', 'IDLE', 'RSEL', 'REN', 'RACK', 'RDAT', 'IDLE',
+            'WAITD', 'WSEL', 'WEN', 'WACK', 'IDLE', 'RSEL', 'REN', 'RACK', 'RDAT', 'IDLE'
+           ]},
+    {name: 'RcaptureReg',  		wave: 'x........|...2...x|..........|......2.x..', data: ['b', 'd']},
+
+    {name: 'PADDR',  			wave: 'x...2.x..|.2.x....|...2...x..|.2....x....', data: ['A(a)', 'A(b)', 'A(c)', 'A(d)']},
+    {name: 'PWRITE',  			wave: 'x...1.x..|.0.x....|...1...x..|.0....x....'},
+    {name: 'PSEL',  			wave: '0...1.0..|.1.0....|...1...0..|.1....0....'},
+    {name: 'PENABLE',  			wave: '0....10..|..10....|....1..0..|..1...0....'},
+    {name: 'PWDATA',  			wave: 'x...2.x..|........|...2...x..|...........', data: ['a', 'c']},
+    {name: 'PRDATA',  			wave: 'x........|..2x....|..........|.....2x....', data: ['b', 'd']},
+    {name: 'PREADY',  			wave: 'x....1x..|..1x....|....0.1x..|..0..1x....'},
+
+]}

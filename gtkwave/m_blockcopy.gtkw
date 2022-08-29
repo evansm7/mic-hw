@@ -1,0 +1,98 @@
+[*]
+[*] GTKWave Analyzer v3.3.87 (w)1999-2017 BSI
+[*] Mon Jun 24 17:14:19 2019
+[*]
+[dumpfile] "/Users/matt/Documents/Hardware/verilog/mictest/tb_component_m_blockcopy_apb.vcd"
+[dumpfile_mtime] "Mon Jun 24 17:05:57 2019"
+[dumpfile_size] 68991
+[savefile] "/Users/matt/Documents/Hardware/verilog/mictest/m_blockcopy.gtkw"
+[timestart] 1548
+[size] 1680 1005
+[pos] -1 -1
+*-5.000000 1684 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.REQA.
+[sst_width] 203
+[signals_width] 328
+[sst_expanded] 1
+[sst_vpaned_height] 639
+@28
+top.clk
+top.reset
+@200
+-APB
+@22
+top.REQA.PADDR[12:0]
+@28
+top.REQA.PCLK
+top.REQA.PENABLE
+@22
+top.REQA.PRDATA[31:0]
+@28
+top.REQA.PSEL
+@22
+top.REQA.PWDATA[31:0]
+@28
+top.REQA.PWRITE
+@200
+-MIC
+@22
+[color] 2
+top.s0_td[63:0]
+@28
+[color] 2
+top.s0_tv
+[color] 2
+top.s0_tr
+[color] 2
+top.s0_tl
+@22
+[color] 3
+top.s0r_td[63:0]
+@28
+[color] 3
+top.s0r_tv
+[color] 3
+top.s0r_tr
+[color] 3
+top.s0r_tl
+@200
+-Blockcopy state
+@24
+top.REQA.req_state[2:0]
+@28
+top.REQA.req_ready
+@22
+top.REQA.trx_buf_addr[2:0]
+@24
+top.REQA.trx_count[8:0]
+@22
+top.REQA.transfer_beats[8:0]
+top.REQA.transfer_buf_addr[5:0]
+@28
+top.REQA.hs_a
+top.REQA.hs_b
+top.REQA.transfer_dir
+top.REQA.transfer_go
+@22
+top.REQA.apb_ram_out_wide[63:0]
+top.REQA.apb_ram_out[31:0]
+top.REQA.PRDATA[31:0]
+@200
+-MIF
+@24
+top.REQA.mif.state[2:0]
+@28
+top.REQA.mif.req_ready
+top.REQA.mif.req_start
+@22
+top.REQA.mif.write_counter[8:0]
+top.REQA.mif.write_limit[8:0]
+top.REQA.mif.read_len[7:0]
+@23
+top.REQA.mif.count[9:0]
+@28
+top.REQA.mif.response_handshake_a
+top.REQA.mif.response_handshake_b
+[pattern_trace] 1
+[pattern_trace] 0

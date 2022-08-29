@@ -1,0 +1,107 @@
+[*]
+[*] GTKWave Analyzer v3.3.87 (w)1999-2017 BSI
+[*] Mon Apr 29 19:04:57 2019
+[*]
+[dumpfile] "/Users/matt/Documents/Hardware/verilog/mictest/tb_component_s_ssram.vcd"
+[dumpfile_mtime] "Mon Apr 29 19:02:54 2019"
+[dumpfile_size] 220360
+[savefile] "/Users/matt/Documents/Hardware/verilog/mictest/do_ssram.gtkw"
+[timestart] 2097600
+[size] 1680 1005
+[pos] -1 -1
+*-15.000000 2257000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.SSRAMCTRL.
+[sst_width] 203
+[signals_width] 316
+[sst_expanded] 1
+[sst_vpaned_height] 639
+@28
+top.SSRAMCTRL.reset
+@24
+top.SSRAMCTRL.clk
+@200
+-MIC in
+@28
+top.SSRAMCTRL.I_TVALID
+@22
+top.SSRAMCTRL.I_TDATA[63:0]
+@28
+top.SSRAMCTRL.I_TLAST
+top.SSRAMCTRL.I_TREADY
+@200
+-MIC out
+@28
+top.SSRAMCTRL.O_TVALID
+@22
+top.SSRAMCTRL.O_TDATA[63:0]
+@28
+top.SSRAMCTRL.O_TLAST
+top.SSRAMCTRL.O_TREADY
+@200
+-SSRAM
+@22
+top.SSRAMCTRL.sram_addr[28:0]
+@28
+top.SSRAMCTRL.sram_clk
+@22
+top.SSRAMCTRL.sram_dq[63:0]
+top.SSRAMCTRL.sram_dq_out[63:0]
+@28
+top.SSRAMCTRL.sram_dq_out_valid
+@22
+top.SSRAMCTRL.sram_nbw[7:0]
+@28
+top.SSRAMCTRL.sram_nce
+top.SSRAMCTRL.sram_nwe
+@22
+top.SSRAMCTRL.sram_read_in[63:0]
+top.SSRAMCTRL.sram_dq_out_p[63:0]
+@28
+top.SSRAMCTRL.sram_dq_out_valid_p
+@200
+-Internal state
+@24
+top.SSRAMCTRL.in_request[1:0]
+top.SSRAMCTRL.ram_state[2:0]
+top.SSRAMCTRL.output_state[2:0]
+@28
+top.SSRAMCTRL.is_header
+@22
+top.SSRAMCTRL.header_address[31:3]
+@28
+top.SSRAMCTRL.header_address_valid
+@24
+top.SSRAMCTRL.header_pkt_type[1:0]
+@25
+top.SSRAMCTRL.header_rd_len[7:0]
+@22
+top.SSRAMCTRL.header_wr_strobes[7:0]
+top.SSRAMCTRL.req_addr[31:3]
+@24
+top.SSRAMCTRL.req_type[1:0]
+top.SSRAMCTRL.req_len[7:0]
+@22
+top.SSRAMCTRL.req_srcid[7:0]
+@28
+top.SSRAMCTRL.do_write_command
+top.SSRAMCTRL.write_command_now
+@22
+top.SSRAMCTRL.req_wr_strobes[7:0]
+@24
+top.SSRAMCTRL.read_beats_left[7:0]
+@28
+top.SSRAMCTRL.read_not_finished
+top.SSRAMCTRL.do_read_command
+top.SSRAMCTRL.read_command_now
+[color] 3
+top.SSRAMCTRL.read_command_prev
+top.SSRAMCTRL.read_command_prev_is_last
+top.SSRAMCTRL.rd_almost_full
+top.SSRAMCTRL.rd_consume
+top.SSRAMCTRL.read_data_present
+top.SSRAMCTRL.fifo_last
+@24
+top.SSRAMCTRL.FIFO.pos[2:0]
+[pattern_trace] 1
+[pattern_trace] 0

@@ -1,0 +1,177 @@
+MIC packet structure
+====================
+
+(Retrospectively documenting ~2016 work, 27/5/20 ME)
+
+v1
+
+MIC is a two-channel packet-based interface that lends itself to implementation
+with a multi-hop distributed flow-controlled network.  It supports 32-bit
+addressing, 64-bit transfers (with efficient multi-beat fully-pipelined bursts)
+and byte-granularity access.
+
+Each component has an output channel and an input channel.  A channel transfers
+a beat using ready/valid signalling.  A requester makes requests on its output
+channel and receives responses on its input channel.  Similarly, a completer
+receives requests on input and gives responses on output.  Easy.
+
+Data is sent on a channel with one or more beats (valid data cycles).  A
+transfer is performed in packets, which start with a header beat.  In the case
+of a write, this is followed by one or more data beats.  The last beat is
+flagged using sideband, making packet delineation easier for intermediate
+components (no need to pry apart headers & count).
+
+From the perspective of the originator/outputter, a channel is made up of:
+
+ TDATA  -       out     - Data to be sent
+ TVALID -       out     - Indicates TDATA/TLAST are valid in this cycle
+ TREADY -       in      - Indicates that, if TVALID=1, TDATA/TLAST will be
+                          accepted in this cycle
+ TLAST  -       out     - Indicates TDATA is the last beat of the packet
+
+Typical transactions:
+
+ Req'r   {Read header}                                   -> Compl'r
+ Compl'r {Response header, data0, data1, ... dataN}      -> Req'r
+
+ Req'r   {Write header, data0, data1, ... dataN}         -> Compl'r
+ Compl'r {Response header}                               -> Req'r
+
+
+A request comprises one beat of header, then zero or more data beats.  The
+header type field differentiates the different purposes of header.  The header
+is 64 bits, which in MICv1 is equivalent to one beat: MIC is 64 bits wide.  In
+future this might be split for wider or multi-beat for narrower links; it should
+be straightforward to build 32-bit links which transfer a minimum of 2 beats
+(for a 64-bit header).
+
+A transfer is addressed with the granularity of a 64-bit doubleword.  Transfers
+can be one beat long, in which case they can specify a size of 64, 32, 16 or 8
+bits and which of the byte/halfword/words within the 64-bit addressed quantity
+is being accessed.  These "small transfers" are naturally-aligned (note that the
+lower 3 bits of address are not transferred, so misalignment can't be
+expressed).  Multi-beat transfers are always a multiple of 64-bits in length and
+are to 64-bit aligned addresses.
+
+
+# Header type 0 (Read request):
+
+  63 62 61 60 59 58 57 56 55 54 53 52 51 50 49 48 47 46 45 44 43 42 41 40 39 38 37 36 35 34 33 32
+ +--------------+--------+-----------------------+-----------------------+-----------------+-----+
+ | ByteEnables  | RES0   | RoutingInfo           |  ReadLen              | RES0            | 0 0 |
+ +--------------+--------+-----------------------+-----------------------+-----------------+-----+
+  31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0
+ +--------------------------------------------------------------------------------------+--------+
+ | Address                                                                              | RES0   |
+ +--------------------------------------------------------------------------------------+--------+
+
+Requests read data (type 2 response with 'ReadLen+1' data beats, from Address).
+TLAST=1 on the header.
+ByteEnables must be 0x1f when ReadLen>0 (multiple beats).
+
+
+# Header type 1 (Write request):
+
+  63 62 61 60 59 58 57 56 55 54 53 52 51 50 49 48 47 46 45 44 43 42 41 40 39 38 37 36 35 34 33 32
+ +--------------+--------+-----------------------+-----------------------+-----------------+-----+
+ | ByteEnables  | RES0   | RoutingInfo           |  RES0                 | RES0            | 0 1 |
+ +--------------+--------+-----------------------+-----------------------+-----------------+-----+
+  31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0
+ +--------------------------------------------------------------------------------------+--------+
+ | Address                                                                              | RES0   |
+ +--------------------------------------------------------------------------------------+--------+
+
+Writes data, header followed by 1 to 256 beats of data.
+TLAST=0 on the header.  TLAST=1 on the last beat of data.
+ByteEnables must be 0x1f when a multi-beat write is going to be performed,
+otherwise completer behaviour is undefined.
+
+
+# Header type 2 (Read response w/ data):
+
+  63 62 61 60 59 58 57 56 55 54 53 52 51 50 49 48 47 46 45 44 43 42 41 40 39 38 37 36 35 34 33 32
+ +-----------------------+-----------------------+-----------------------+-----------------+-----+
+ | RES0                  | RoutingInfo           |  RES0                 | RES0            | 1 0 |
+ +-----------------------+-----------------------+-----------------------+-----------------+-----+
+  31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0
+ +--------------------------------------------------------------------------------------+--------+
+ | Address                                                                              | RES0   |
+ +--------------------------------------------------------------------------------------+--------+
+
+Response to read request, providing read data.  header is followed by 1 to 256
+beats of data corresponding to the address and ReadLen in the read request.
+TLAST=0 on the header.  TLAST=1 on the last beat of data.
+Address is copied unmodified from the request into this response (as a courtesy to the requester).
+
+
+# Header type 3 (Write response):
+
+  63 62 61 60 59 58 57 56 55 54 53 52 51 50 49 48 47 46 45 44 43 42 41 40 39 38 37 36 35 34 33 32
+ +-----------------------+-----------------------+-----------------------+-----------------+-----+
+ | RES0                  | RoutingInfo           |  RES0                 | RES0            | 1 1 |
+ +-----------------------+-----------------------+-----------------------+-----------------+-----+
+  31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0
+ +--------------------------------------------------------------------------------------+--------+
+ | Address                                                                              | RES0   |
+ +--------------------------------------------------------------------------------------+--------+
+
+Response to write request, confirming receipt.  (Insert hazarding/consistency rules here!)
+TLAST=1 on the header.
+Address is copied unmodified from the request into this response.
+
+
+# Field information
+
+## RoutingInfo
+
+Requester sets RoutingInfo=00.  The interconnect network might insert an ID into
+this field in order to route the response back to the requester.  Completer
+copies this field unmodified into response.
+
+
+## ByteEnables[4:0]
+
+This field is 0xff when a multi-beat read or write is performed.  When a
+single-byte read or write is performed, this field indicates which of the
+transferred bytes are/must be valid:
+
+        ByteEnables[4:3]        ByteEnables[2:0]
+        Xfer size               Bytes Of Interest
+        00      8 bits          000     --------------BB
+                                001     ------------BB--
+                                010     ----------BB----
+                                011     --------BB------
+                                100     ------BB--------
+                                101     ----BB----------
+                                110     --BB------------
+                                111     BB--------------
+        01      16 bits         00x     ------------BBBB
+                                01x     --------BBBB----
+                                10x     ----BBBB--------
+                                11x     BBBB------------
+        10      32 bits         0xx     --------BBBBBBBB
+                                1xx     BBBBBBBB--------
+        11      64 bits         xxx     BBBBBBBBBBBBBBBB
+
+
+For a write, ByteEnables indicates the byte(s) to be updated at the completer.  In
+the data beat, other bytes might be non-zero.
+
+For a read, ByteEnables indicates the byte(s) that are expected to be valid in
+the response.  In the data beat, other bytes might be non-zero (or contain valid
+data).
+
+
+# What MIC doesn't do:
+
+   * Out of order responses
+
+   Though it is by nature split-transaction, this is only of benefit for
+   distinct pairs of actors because there is no support for re-ordering.
+   Responses are returned on an input channel in the order of requests made on
+   the corresponding output channel.  In future, a (small) transaction ID/tag
+   could be added to the header.
+
+   * Interfaces wider or narrower than 64 bits.
+
+   * Credits/e2e flow-control.
